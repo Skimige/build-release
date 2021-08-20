@@ -71,6 +71,11 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
+    - name: Add patch
+      run: |
+        cd x-wrt/target/linux/ramips/patches-5.4
+        curl -O https://raw.githubusercontent.com/MeIsReallyBa/linux/master/998-v6offload.patch
+
     - name: Building
       run: |
         cp *.sh x-wrt/

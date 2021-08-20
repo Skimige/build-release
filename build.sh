@@ -17,10 +17,10 @@ sleep 10
 
 mkdir .build_x
 echo CONFIG_VERSION_NUMBER=\"`cat release.tag`\" >.build_x/env
-./feeds/x/rom/lede/make.sh make -j1 && sh upload.sh
+./feeds/x/rom/lede/make.sh make -j$1 && sh upload.sh
 
 _EXIT=$?
 [ "x$_EXIT" = "x0" ] || {
-	make -j1 V=s >>../make.log 2>&1 && sh upload.sh
+	make -j1 V=s >>../make.log 2>&1
 	exit $_EXIT
 }
