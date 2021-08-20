@@ -79,15 +79,16 @@ jobs:
         echo -e "$(nproc) thread build."
         TARGET=ramips-mt7621 sh build.sh $(nproc)
 
-    - name : Upload make.log if failure
+    - name : Upload make.log
       uses: actions/upload-artifact@master
-      if: failure()
+      if: ${{ always() }}
       with:
         name: build-failure-log
         path: make.log
 
     - name : Upload artifact
       uses: actions/upload-artifact@master
+      if: ${{ always() }}
       with:
         name: x-wrt-9.0_b202108141018=ramips-mt7621
         path: x-wrt/rom
